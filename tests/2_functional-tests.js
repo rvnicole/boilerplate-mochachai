@@ -65,11 +65,16 @@ suite('Functional Tests', function () {
 });
 
 const Browser = require('zombie');
+Browser.site = "https://c0485z-3000.preview.csb.app/"; // URL
 
 suite('Functional Tests with Zombie.js', function () {
   this.timeout(5000);
 
+  const browser = new Browser();// Instancia
 
+  suiteSetup( function( done ){
+    return browser.visit( '/', done );
+  });
 
   suite('Headless browser', function () {
     test('should have a working "site" property', function() {
