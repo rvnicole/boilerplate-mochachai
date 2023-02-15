@@ -36,9 +36,12 @@ suite('Functional Tests', function () {
       chai
         .request(server)
         .put('/travellers')
-
-        .end(function (err, res) {
-          assert.fail();
+        .send( { surname : "Colombo" } )
+        .end( function (err, res) {
+          assert.equal( res.status, 200 );
+          assert.equal( res.type, "application/json" );
+          assert.equal( res.body.name, "Cristoforo" );
+          assert.equal( res.body.surname, "Colombo" );
 
           done();
         });
